@@ -413,6 +413,8 @@ function twentyseventeen_scripts() {
 
 	// Theme stylesheet.
 	wp_enqueue_style( 'twentyseventeen-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'amb-style', get_template_directory_uri() . '/assets/css/style.css', array() );
+	wp_enqueue_style( 'amb-responsive-style', get_template_directory_uri() . '/assets/css/responsive.css', array() );
 
 	// Load the dark colorscheme.
 	if ( 'dark' === get_theme_mod( 'colorscheme', 'light' ) || is_customize_preview() ) {
