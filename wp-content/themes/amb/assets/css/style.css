@@ -564,7 +564,7 @@ select:focus {
     font-family: 'Poppins', sans-serif;
 }
 .mainmenu-area .menuzord-menu > li:hover > a, 
-.mainmenu-area .menuzord-menu > li.current > a{
+.mainmenu-area .menuzord-menu > li.current_page_item > a{
     color: #3452ff;
 }
 .mainmenu-area .menuzord-menu > li > a:before{
@@ -582,7 +582,7 @@ select:focus {
 	-o-transition:all 500ms ease;	
 }
 .mainmenu-area .menuzord-menu > li:hover a:before,
-.mainmenu-area .menuzord-menu > li.current a:before{
+.mainmenu-area .menuzord-menu > li.current_page_item a:before{
     width: 100%;
 }
 
