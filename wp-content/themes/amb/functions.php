@@ -614,3 +614,19 @@ function dexlock_testimonials() {
 			'supports' => array( 'title', 'editor', 'custom-fields' )
 	));
 }
+
+add_action( 'init', 'dexlock_news' );
+
+function dexlock_news() {
+
+	register_post_type( 'news', array(
+			'labels' => array(
+					'name' => 'News',
+					'singular_name' => 'news',
+			),
+			'description' => 'News details can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'supports' => array( 'title', 'thumbnail', 'editor', 'custom-fields' )
+	));
+}
