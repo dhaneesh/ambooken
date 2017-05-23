@@ -566,3 +566,51 @@ require get_parent_theme_file_path( '/inc/customizer.php' );
  * SVG icons functions and filters.
  */
 require get_parent_theme_file_path( '/inc/icon-functions.php' );
+
+add_action( 'init', 'dexlock_sliders' );
+
+function dexlock_sliders() {
+
+	register_post_type( 'sliders', array(
+			'labels' => array(
+					'name' => 'Sliders',
+					'singular_name' => 'sliders',
+			),
+			'description' => 'Banner images can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'supports' => array( 'title', 'editor', 'custom-fields' )
+	));
+}
+
+add_action( 'init', 'dexlock_partners' );
+
+function dexlock_partners() {
+
+	register_post_type( 'partners', array(
+			'labels' => array(
+					'name' => 'Partners',
+					'singular_name' => 'partners',
+			),
+			'description' => 'Partners details can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'supports' => array( 'title', 'editor', 'custom-fields' )
+	));
+}
+
+add_action( 'init', 'dexlock_testimonials' );
+
+function dexlock_testimonials() {
+
+	register_post_type( 'testinonials', array(
+			'labels' => array(
+					'name' => 'Testimonials',
+					'singular_name' => 'testimonials',
+			),
+			'description' => 'Testimonial details can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'supports' => array( 'title', 'editor', 'custom-fields' )
+	));
+}
