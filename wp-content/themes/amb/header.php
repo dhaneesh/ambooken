@@ -46,22 +46,29 @@
 		<!--Start Preloader -->
 		<div class="preloader"></div>
 		<!--End Preloader --> 
-			<!--Start top bar area-->
+<?php 
+$contact_postid = url_to_postid( 'contact-us' );
+$global_phone = get_field('corporate_phone_number', $contact_postid);
+$global_email = get_field('corporate_mail', $contact_postid);
+$global_address = explode(PHP_EOL, get_field('corporate_address', $contact_postid));
+$social_postid = url_to_postid( 'social-media' );
+?>        
+<!--Start top bar area-->
 <section class="top-bar-area">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div class="top-left">
                     <ul class="top-contact-info">
-                        <li><span class="flaticon-telephone"></span>Phone: +123-456-7890</li>    
-                        <li><span class="flaticon-back"></span>Mailus@Themename.com</li>    
-                        <li><span class="flaticon-globe"></span>201 Creative St, NY 10021, USA</li>    
+                        <li><span class="flaticon-telephone"></span>Phone: <?php echo $global_phone; ?></li>    
+                        <li><span class="flaticon-back"></span><?php echo $global_email; ?></li>    
+                        <li><span class="flaticon-globe"></span><?php echo $global_address[1]; ?></li>    
                     </ul>   
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="top-right clearfix">
-                    <div class="language-switcher">
+                    <div class="language-switcher" style="display:none;">
                         <div id="polyglotLanguageSwitcher">
                             <form action="#">
                                 <select id="polyglot-language-options">
@@ -75,11 +82,14 @@
                         </div>
                     </div>
                     <ul class="social-links">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                        <li><a target="_blank" href="<?php echo get_field('facebook_url', $social_postid); ?>"><i class="fa fa-facebook"></i></a></li>
+                        <li><a target="_blank" href="<?php echo get_field('twitter_url', $social_postid); ?>"><i class="fa fa-twitter"></i></a></li>
+                        <?php if(get_field('google_plus_url', $social_postid)) { ?>
+                        <li><a target="_blank"  href="<?php echo get_field('google_plus_url', $social_postid); ?>"><i class="fa fa-google-plus"></i></a></li>
+                        <?php } ?>
+                        <?php if(get_field('linkedin_url', $social_postid)) { ?>
+                        <li><a target="_blank" href="<?php echo get_field('linkedin_url', $social_postid); ?>"><i class="fa fa-linkedin"></i></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -89,14 +99,12 @@
 <!--End top bar area-->  
 
 <!--Start mainmenu area-->
-<section class="mainmenu-area stricky">
+<section class="mainmenu-area stricky" style="background-color:#bcbcbc;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-4">
                 <div class="logo">
-                    <a href="index.html">
-                        <img src="/wp-content/themes/amb/assets/images/resources/logo.png" alt="Awesome Logo">
-                    </a>
+                        <?php the_custom_logo(); ?>
                 </div>
             </div>
             <div class="col-lg-6 col-md-8">
@@ -136,7 +144,7 @@
                             <button><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="count">(0)</span></button>
                         </div> -->
                     </div>
-                    <div class="quote-button">
+                    <div class="quote-button" style="display:none;">
                         <a href="#">Get a Quote</a>
                     </div>
                 </div>    

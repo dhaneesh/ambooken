@@ -571,9 +571,11 @@ if($("#contact-form").length){
           form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
           var form_btn_old_msg = form_btn.html();
           form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+          alert('test data');
           $(form).ajaxSubmit({
             dataType:  'json',
             success: function(data) {
+                alert('kill');
               if( data.status == 'true' ) {
                 $(form).find('.form-control').val('');
               }

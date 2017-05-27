@@ -12,32 +12,76 @@
 
 get_header(); ?>
 
-<div class="wrap">
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<!--Start breadcrumb area-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-botton">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span class="dotted"></span></li>
+                        <li class="active">Single Project</li>
+                    </ul>    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->   
 
-			<?php
-				/* Start the Loop */
-				while ( have_posts() ) : the_post();
+<!--Start blog area-->
+<section class="project-single-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="single-project-content">
+                	<div class="row">
+                        <div class="col-md-12">
 
-					get_template_part( 'template-parts/post/content', get_post_format() );
+		                	<div class="sec-title">
+		                        <h1>Project Analysis</h1>
+		                        <div class="icon-holder">
+		                            <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+		                        </div>
+		                    </div>
+	                    </div>
+                    </div>
 
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="single-project-img-box">
+                                <?php the_post_thumbnail( 'twentyseventeen-featured-image' ); ?>
+                            </div>  
+                        </div>
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="project-solution">
+                                  <?php
+									// Start the loop.
+									while ( have_posts() ) : the_post();
 
-					the_post_navigation( array(
-						'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'twentyseventeen' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Previous', 'twentyseventeen' ) . '</span> <span class="nav-title"><span class="nav-title-icon-wrapper">' . twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '</span>%title</span>',
-						'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'twentyseventeen' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Next', 'twentyseventeen' ) . '</span> <span class="nav-title">%title<span class="nav-title-icon-wrapper">' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ) . '</span></span>',
-					) );
+										/*
+							             * Include the Post-Format-specific template for the content.
+							             * If you want to override this in a child theme, then include a file
+							             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+							             */
+										the_content();
 
-				endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-	<?php get_sidebar(); ?>
-</div><!-- .wrap -->
+										// End the loop.
+									endwhile;
+									?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <?php get_sidebar(); ?>
+        </div>
+    </div>
+</section> 
+<!--End blog area-->  
 
 <?php get_footer();

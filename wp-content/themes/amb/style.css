@@ -1603,13 +1603,6 @@ body.has-header-video .site-description {
 	opacity: 0.8;
 }
 
-.custom-logo-link {
-	display: inline-block;
-	padding-right: 1em;
-	vertical-align: middle;
-	width: auto;
-}
-
 .custom-logo-link img {
 	display: inline-block;
 	max-height: 80px;
@@ -3349,9 +3342,6 @@ object {
 		top: 0;
 	}
 
-	.custom-logo-link {
-		padding-right: 2em;
-	}
 
 	.custom-logo-link img,
 	body.home.title-tagline-hidden.has-header-image .custom-logo-link img,

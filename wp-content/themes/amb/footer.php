@@ -13,14 +13,41 @@
  */
 
 ?>
+<?php 
+$contact_postid = url_to_postid( 'contact-us' );
+$global_phone = get_field('corporate_phone_number', $contact_postid);
+$global_email = get_field('corporate_mail', $contact_postid);
+$global_address = explode(PHP_EOL, get_field('corporate_address', $contact_postid));
+$social_postid = url_to_postid( 'social-media' );
 
+$links_args = array(
+    'orderby'          => 'date',
+    'order'            => 'DESC',
+    'post_type'        => 'useful_links',
+    'post_status'      => 'publish',
+    'posts_per_page'   => 8,
+    'offset'           => 0,
+    'suppress_filters' => true
+);
+$links = get_posts( $links_args );
+$news_args = array(
+    'orderby'          => 'date',
+    'order'            => 'DESC',
+    'post_type'        => 'news',
+    'post_status'      => 'publish',
+    'posts_per_page'   => 3,
+    'offset'           => 0,
+    'suppress_filters' => true
+);
+$news_post = get_posts( $news_args );
+?>   
 
 		<!--Start footer area-->  
 <footer class="footer-area">
     <div class="container">
         <div class="row">
             <!--Start single footer widget-->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-footer-widget pd-bottom50">
                     <div class="footer-logo">
                         <a href="index.html">
@@ -30,123 +57,69 @@
                     <div class="widget-content">
                         <p>We have built an enviable reputation in the consumer goods, heavy industry, high-tech, manufacturing, medical, recreational vehicle, and transportation sectors. multidisciplinary team of engineering experts.</p>
                         <ul class="footer-social-links">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                             <li><a target="_blank" href="<?php echo get_field('facebook_url', $social_postid); ?>"><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="_blank" href="<?php echo get_field('twitter_url', $social_postid); ?>"><i class="fa fa-twitter"></i></a></li>
+                            <?php if(get_field('google_plus_url', $social_postid)) { ?>
+                            <li><a target="_blank"  href="<?php echo get_field('google_plus_url', $social_postid); ?>"><i class="fa fa-google-plus"></i></a></li>
+                            <?php } ?>
+                            <?php if(get_field('linkedin_url', $social_postid)) { ?>
+                            <li><a target="_blank" href="<?php echo get_field('linkedin_url', $social_postid); ?>"><i class="fa fa-linkedin"></i></a></li>
+                            <?php } ?>
+
                         </ul>
                     </div>
                 </div>
             </div>
             <!--End single footer widget-->
             <!--Start single footer widget-->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-footer-widget margin-lft pd-bottom50">
                     <div class="title">
                         <h3>Usefull Links</h3>
                     </div>
                     <ul class="usefull-links">
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Business Growth</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Sustainability</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Performance</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Customer Insights</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Organization</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Advanced Analytics</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Free Consultation</a></li>
+                        <?php foreach ($links as $link) { ?>
+                           <li><a href="<?php echo get_field( 'reference_link', $link->ID ); ?>">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i><?php echo $link->post_title; ?></a></li>
+                        <?php } ?>
+    
                     </ul>
                 </div>
             </div>
             <!--End single footer widget-->
             <!--Start single footer widget-->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-footer-widget margin-top pd-bottom50">
                     <div class="title">
                         <h3>Latest News</h3>
                     </div>
                     <ul class="latest-post">
+                        <?php foreach($news_post as $news) { ?>
                         <li class="single-post">
                             <div class="img-holder">
-                                <img src="/wp-content/themes/amb/assets/images/footer/latest-news-1.png" alt="Awesome Image">
+                                <img src="<?php echo get_the_post_thumbnail($news->ID, 'thumbnail'); ?>" alt="<?php echo $news->post_title; ?>">
                                 <div class="overlay-style-one">
                                     <div class="box">
                                         <div class="content">
-                                            <a href="blog-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                            <a href="<?php echo get_permalink($news->ID); ?>">
+                                                <i class="fa fa-link" aria-hidden="true"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-holder">
-                                <a class="post-title" href="#">Improve your business</a>
+                                <a class="post-title" href="<?php echo get_permalink($news->ID); ?>"><?php echo $news->post_title; ?></a>
                                 <div class="post-info">
-                                    <span>March 14, 2017</span>
+                                    <span><?php  echo date(DATE_FORMAT, strtotime($news->post_date)) ?> </span>
                                 </div>
                             </div>
                         </li>
-                        <li class="single-post">
-                            <div class="img-holder">
-                                <img src="/wp-content/themes/amb/assets/images/footer/latest-news-2.png" alt="Awesome Image">
-                                <div class="overlay-style-one">
-                                    <div class="box">
-                                        <div class="content">
-                                            <a href="blog-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-holder">
-                                <a class="post-title" href="#">Coaching your employees</a>
-                                <div class="post-info">
-                                    <span>February 21, 2017</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="single-post">
-                            <div class="img-holder">
-                                <img src="/wp-content/themes/amb/assets/images/footer/latest-news-3.png" alt="Awesome Image">
-                                <div class="overlay-style-one">
-                                    <div class="box">
-                                        <div class="content">
-                                            <a href="blog-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-holder">
-                                <a class="post-title" href="#">Top ways to reach success</a>
-                                <div class="post-info">
-                                    <span>Janaury 10, 2017</span>
-                                </div>
-                            </div>
-                        </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
             <!--Start single footer widget-->
-            <!--Start single footer widget-->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="single-footer-widget pd-lefttop">
-                    <div class="title">
-                        <h3>Tags</h3>
-                    </div>
-                    <ul class="tags">
-                        <li><a href="#">Ideas</a></li>
-                        <li><a href="#">Finance</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Consulting</a></li>
-                        <li><a href="#">Branding</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Growth Tips</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Banks</a></li>
-                        <li><a href="#">Works</a></li>
-                        <li><a href="#">Guides</a></li>
-                        <li><a href="#">Corporate</a></li>
-                        <li><a href="#">Benefits</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!--End single footer widget-->
         </div>
     </div>
 </footer>   
@@ -158,9 +131,9 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="footer-contact-info">
-                    <li><span class="flaticon-telephone"></span><b>Phone:</b> +123-456-7890</li>
-                    <li><span class="flaticon-back"></span><b>Email:</b> Mailus@Solutions.com</li>
-                    <li><span class="flaticon-globe"></span><b>Add:</b> 201 Creative St, NY 10021</li>
+                    <li><span class="flaticon-telephone"></span><b>Phone:</b> <?php echo $global_phone; ?></li>
+                    <li><span class="flaticon-back"></span><b>Email:</b> <?php echo $global_email; ?></li>
+                    <li><span class="flaticon-globe"></span><b>Add:</b> <?php echo $global_address[1]; ?></li>
                 </ul>
             </div>
         </div>
@@ -180,9 +153,9 @@
             <div class="col-md-6 col-sm-4">
                 <div class="footer-menu">
                     <ul>
-                        <li><a href="#">Legal</a></li>
-                        <li><a href="#">Sitemap</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="/legal">Legal</a></li>
+                        <li><a href="/stemap">Sitemap</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -193,7 +166,6 @@
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
-	</div><!-- .boxed_wrapper -->
 </div><!-- #page -->
 <!-- main jQuery -->
 <script src="/wp-content/themes/amb/assets/js/jquery-1.11.1.min.js"></script>
@@ -258,6 +230,6 @@
 <!-- thm custom script -->
 <script src="/wp-content/themes/amb/assets/js/custom.js"></script>
 <?php wp_footer(); ?>
-
+</div><!-- .boxed_wrapper -->
 </body>
 </html>

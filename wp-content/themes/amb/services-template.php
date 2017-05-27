@@ -1,5 +1,18 @@
 <?php /* Template Name: Services page Template */ ?>
 <?php get_header(); ?>
+<?php
+$services_args = array(
+    'orderby'          => 'date',
+    'order'            => 'DESC',
+    'post_type'        => 'services',
+    'author_name'      => '',
+    'post_status'      => 'publish',
+    'suppress_filters' => true,
+    'posts_per_page'   => 9,
+);
+$services_posts = get_posts( $services_args );
+
+?>
 <!--Start breadcrumb area-->     
 <section class="breadcrumb-area" style="background-image: url(/wp-content/themes/amb/assets/images/resources/breadcrumb-bg.jpg);">
 	<div class="container">
@@ -32,124 +45,28 @@
     <div class="container">
         <div class="row">
             <!--Start single item-->
+            <?php foreach($services_posts as $services) { ?>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="single-item text-center">
                     <div class="img-holder">
-                        <img src="/wp-content/themes/amb/assets/images/services/1.jpg" alt="Awesome Image">
+                        <img src="<?php echo get_field( 'services_block_image', $services->ID ); ?>" alt="<?php echo $services->post_title; ?>">
                         <div class="overlay-style-two">
                             <div class="box">
                                 <div class="content">
-                                    <a href="business-growth.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    <a href="#">
+                                        <i class="fa fa-link" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-holder">
-                        <a href="business-growth.html"><h3 class="title">Business Growth</h3></a>
-                        <p>We have built an enviable reputation in the consumer goods, heavy industry, high-tech, manufacturing & Medical sectors.</p>
+                        <a href="business-growth.html"><h3 class="title"><?php echo $services->post_title; ?></h3></a>
+                        <p><?php echo get_field( 'services_block_description', $services->ID ); ?></p>
                     </div>
                 </div>
             </div>
-            <!--End single item-->
-            <!--Start single item-->
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="single-item text-center">
-                    <div class="img-holder">
-                        <img src="/wp-content/themes/amb/assets/images/services/2.jpg" alt="Awesome Image">
-                        <div class="overlay-style-two">
-                            <div class="box">
-                                <div class="content">
-                                    <a href="advanced-analytics.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-holder">
-                        <a href="advanced-analytics.html"><h3 class="title">Advanced Analytics</h3></a>
-                        <p>Business analytics (BA) is the practice of iterative, methodical exploration of an organi-zation's data with emphasis.</p>
-                    </div>
-                </div>
-            </div>
-            <!--End single item-->
-            <!--Start single item-->
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="single-item text-center">
-                    <div class="img-holder">
-                        <img src="/wp-content/themes/amb/assets/images/services/3.jpg" alt="Awesome Image">
-                        <div class="overlay-style-two">
-                            <div class="box">
-                                <div class="content">
-                                    <a href="customer-insights.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-holder">
-                        <a href="customer-insights.html"><h3 class="title">Customer Insignts</h3></a>
-                        <p>Customer Insight Analytics solutions deliver targeted and actionable customer analysis that help financial institutions make.</p>
-                    </div>
-                </div>
-            </div>
-            <!--End single item-->
-            <!--Start single item-->
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="single-item text-center">
-                    <div class="img-holder">
-                        <img src="/wp-content/themes/amb/assets/images/services/4.jpg" alt="Awesome Image">
-                        <div class="overlay-style-two">
-                            <div class="box">
-                                <div class="content">
-                                    <a href="sustainability.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-holder">
-                        <a href="sustainability.html"><h3 class="title">Sustainability</h3></a>
-                        <p>Sustainability is a priority interest for many of organizations, when it comes to corporate we believe the normal rules.</p>
-                    </div>
-                </div>
-            </div>
-            <!--End single item-->
-            <!--Start single item-->
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="single-item text-center">
-                    <div class="img-holder">
-                        <img src="/wp-content/themes/amb/assets/images/services/5.jpg" alt="Awesome Image">
-                        <div class="overlay-style-two">
-                            <div class="box">
-                                <div class="content">
-                                    <a href="performance.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-holder">
-                        <a href="performance.html"><h3 class="title">Performance</h3></a>
-                        <p>In a contract, performance is deemed to be the fulfillment of an obligation, in a manner that releases performer from liabilities.</p>
-                    </div>
-                </div>
-            </div>
-            <!--End single item-->
-            <!--Start single item-->
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="single-item text-center">
-                    <div class="img-holder">
-                        <img src="/wp-content/themes/amb/assets/images/services/6.jpg" alt="Awesome Image">
-                        <div class="overlay-style-two">
-                            <div class="box">
-                                <div class="content">
-                                    <a href="organization.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-holder">
-                        <a href="organization.html"><h3 class="title">Organization</h3></a>
-                        <p>We help business improve financial performance by ensuring the entire organization and set up to deliver.</p>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
             <!--End single item-->
         </div>
     </div>
@@ -162,11 +79,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title pull-left">
-                    <h3>Over 20 years of experience we’ll ensure you get the best guidance.</h3>    
+                    <h3><?php echo $post->post_content; ?></h3>    
                 </div>
-                <div class="button pull-right">
-                    <a class="thm-btn bg-clr1" href="#">Request Quote</a>
-                </div>  
             </div>
         </div>
     </div>

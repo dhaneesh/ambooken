@@ -1,5 +1,44 @@
 <?php /* Template Name: Contact page Template */ ?>
 <?php get_header(); ?>
+
+<?php
+
+if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+
+  if(count(validate_contact_form()) == 0) {
+
+    $name = $_POST['form_name'];
+    $email_address = $_POST['contact_email'];
+    $phone = $_POST['form_phone'];
+    $subject = $_POST['form_subject'];
+    $body = $_POST['form_message'];
+    $to = get_field('to_address', $post->ID);
+    
+    $mail_subject = 'Request from ' . $name;
+
+    $message_body = '';
+    $message_body .= 'Hi, <br />';
+    $message_body = 'Name : ' . $name . '<br/>';
+    $message_body .= 'Phone : ' . $phone. '<br/>';
+    $message_body .= 'Email : ' . $email_address . '<br/>';
+    $message_body .= 'Subject : ' . $subject . '<br/>';
+    $message_body .= 'Message : ' . $body . '<br/><br />';
+    $message_body .= 'Thanks, <br/> Globalcky';
+
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+
+    if (wp_mail($to, $subject, $message_body, $headers)) {
+      $message = get_field('success_message', $post->ID);
+    } else {
+      $message = get_field('failed_message', $post->ID);
+    }
+    $_POST = array();
+  } else {
+    $errors = validate_contact_form();
+  }
+}
+?>
+
 <!--Start breadcrumb area-->     
 <section class="breadcrumb-area" style="background-image: url(/wp-content/themes/amb/assets/images/resources/breadcrumb-bg.jpg);">
 	<div class="container">
@@ -16,7 +55,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="">Home</a></li>
                         <li><span class="dotted"></span></li>
                         <li class="active">Contact Us</li>
                     </ul>    
@@ -35,8 +74,7 @@
             <div class="icon-holder">
                 <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
             </div>
-            <p>We recently helped a small business grow from break-even to over $1m profit in less than 2 years. Have a general question concerning Solutions but      don't know who to contact? Please find below contact details and contact us today!
-            </p>
+            <p><?php echo $post->post_content; ?></p>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -52,7 +90,7 @@
                                             <i class="fa fa-home" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Address:</span> 321, Breaking Street,<br>2nd cros st, Newyork ,USA 10002</h5>
+                                            <h5><span>Address:</span><?php echo get_field( 'corporate_address' ); ?></h5>
                                         </div>
                                     </li>
                                     <li>
@@ -60,7 +98,7 @@
                                             <i class="fa fa-phone" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Call Us:</span><br>+321 4567 89 012 & 79 023</h5>
+                                            <h5><span>Call Us:</span><br><?php echo get_field( 'corporate_phone_number' ); ?></h5>
                                         </div>
                                     </li>
                                     <li>
@@ -68,17 +106,19 @@
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Mail Us:</span><br>Mailus@Solutionsteam.com</h5>
+                                            <h5><span>Mail Us:</span><br><?php echo get_field( 'corporate_mail' ); ?></h5>
                                         </div>
                                     </li>
+                                    <?php if(get_field( 'corporate_opening_time' )){ ?>
                                     <li>
                                         <div class="icon-holder">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Opening Time:</span><br>Mon - Sat: 09.00am to 18.00pm</h5>
+                                            <h5><span>Opening Time:</span><br><?php echo get_field( 'corporate_opening_time' ); ?></h5>
                                         </div>
                                     </li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>
@@ -93,7 +133,7 @@
                                             <i class="fa fa-home" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>32, Breaking Street,</span><br> 2nd cros, Newyork ,USA 10002</h5>
+                                            <h5><span><?php echo get_field( 'regional_address' ); ?></h5>
                                         </div>
                                     </li>
                                     <li>
@@ -101,7 +141,7 @@
                                             <i class="fa fa-phone" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Call Us</span><br>+321 4567 89 012 &amp; 79 023</h5>
+                                            <h5><span>Call Us</span><br><?php echo get_field( 'regional_phone_number' ); ?></h5>
                                         </div>
                                     </li>
                                     <li>
@@ -109,17 +149,19 @@
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Mail Us</span><br>Support@Repairplus.com</h5>
+                                            <h5><span>Mail Us</span><br><?php echo get_field( 'regional_mail' ); ?></h5>
                                         </div>
                                     </li>
+                                    <?php if(get_field( 'regional_opening_time' )) { ?>
                                     <li>
                                         <div class="icon-holder">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Opening Time</span><br>Mon - Sat: 09.00am to 18.00pm</h5>
+                                            <h5><span>Opening Time</span><br><?php echo get_field( 'regional_opening_time' ); ?></h5>
                                         </div>
                                     </li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>
@@ -161,7 +203,7 @@
                             <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
                         </div>
                     </div>
-                    <form id="contact-form" name="contact_form" class="default-form" action="inc/sendmail.php" method="post">
+                    <form id="contact-form" name="contact_form" class="default-form" action="" method="post">
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" name="form_name" value="" placeholder="Your Name*" required="">

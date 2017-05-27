@@ -603,7 +603,7 @@ add_action( 'init', 'dexlock_testimonials' );
 
 function dexlock_testimonials() {
 
-	register_post_type( 'testinonials', array(
+	register_post_type( 'testimonials', array(
 			'labels' => array(
 					'name' => 'Testimonials',
 					'singular_name' => 'testimonials',
@@ -629,4 +629,89 @@ function dexlock_news() {
 			'menu_position' => 20,
 			'supports' => array( 'title', 'thumbnail', 'editor', 'custom-fields' )
 	));
+}
+
+add_action( 'init', 'dexlock_projects' );
+
+function dexlock_projects() {
+
+	register_post_type( 'projects', array(
+			'labels' => array(
+					'name' => 'Projects',
+					'singular_name' => 'projects',
+			),
+			'description' => 'Projects details can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'taxonomies'          => array( 'category' ),
+			'supports' => array( 'title', 'thumbnail', 'editor', 'custom-fields' )
+	));
+}
+
+add_action( 'init', 'dexlock_services' );
+
+function dexlock_services() {
+
+	register_post_type( 'services', array(
+			'labels' => array(
+					'name' => 'Services',
+					'singular_name' => 'services',
+			),
+			'description' => 'Services details can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'supports' => array( 'title', 'thumbnail', 'editor', 'custom-fields' )
+	));
+}
+add_action( 'init', 'dexlock_useful_links' );
+
+function dexlock_useful_links() {
+
+	register_post_type( 'useful_links', array(
+			'labels' => array(
+					'name' => 'Useful Links',
+					'singular_name' => 'Useful links',
+			),
+			'description' => 'Useful link details can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'supports' => array( 'title', 'editor', 'custom-fields' )
+	));
+}
+/**
+ *
+ * Function to validate contact form
+ *
+ * @return array
+ */
+function validate_contact_form() {
+print_r($_POST);
+	$errors = array();
+
+	if(empty(trim($_POST['form_name']))) {
+		$errors['form_name'] = 'Name is required';
+	}
+	if(empty(trim($_POST['form_email']))) {
+		$errors['form_email'] = 'Email is required';
+	} else if(!filter_var($_POST['form_email'], FILTER_VALIDATE_EMAIL) ) {
+		$errors['form_email'] = 'Email is invalid';
+	}
+	if(empty(trim($_POST['form_phone']))) {
+		$errors['form_phone'] = 'Phone is required';
+	}
+	if(empty(trim($_POST['form_subject']))) {
+		$errors['form_subject'] = 'Subject is required';
+	}
+	if(empty(trim($_POST['form_message']))) {
+		$errors['form_message'] = 'Message is required';
+	}
+	//your site secret key
+	    // $secret = CAPTCHA_SECRETKEY;
+	    // //get verify response data
+	    // $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+	    // $responseData = json_decode($verifyResponse);
+	    // if(!$responseData->success) {
+	    // 	$errors['captcha'] = 'Robot verification failed, please try again.';
+	    // }
+	return $errors;
 }

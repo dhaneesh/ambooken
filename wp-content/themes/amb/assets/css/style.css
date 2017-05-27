@@ -1416,6 +1416,14 @@ select:focus {
     line-height: 32px;
     margin: -6px 0 13px;
 }
+.know-about-area .text-holder .top-text strong {
+    line-height: 32px;
+    margin: -6px 0 13px;
+    color: #303030;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
 .know-about-area .text-holder .bottom-text {
     margin: 0 0 30px;
 }
@@ -3901,11 +3909,6 @@ select:focus {
 .project-single-area .sidebar-wrapper {
     padding-left: 30px;
 }
-
-.project-single-area .single-project-img-box {
-    margin-bottom: 50px;
-}
-
 .project-single-area .project-info {}
 .project-single-area .project-info ul {
     background: #f9f9f9;
