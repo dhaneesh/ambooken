@@ -14,7 +14,7 @@ $services_posts = get_posts( $services_args );
 
 ?>
 <!--Start breadcrumb area-->     
-<section class="breadcrumb-area" style="background-image: url(/wp-content/themes/amb/assets/images/resources/breadcrumb-bg.jpg);">
+<section class="breadcrumb-area" style="background-image: url(<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/resources/breadcrumb-bg.jpg);">
 	<div class="container">
 	    <div class="row">
 	        <div class="col-md-12">

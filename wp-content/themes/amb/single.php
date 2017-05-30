@@ -42,7 +42,7 @@ get_header(); ?>
 		                	<div class="sec-title">
 		                        <h1>Project Analysis</h1>
 		                        <div class="icon-holder">
-		                            <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+		                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
 		                        </div>
 		                    </div>
 	                    </div>

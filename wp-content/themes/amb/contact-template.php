@@ -40,7 +40,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 ?>
 
 <!--Start breadcrumb area-->     
-<section class="breadcrumb-area" style="background-image: url(/wp-content/themes/amb/assets/images/resources/breadcrumb-bg.jpg);">
+<section class="breadcrumb-area" style="background-image: url(<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/resources/breadcrumb-bg.jpg);">
 	<div class="container">
 	    <div class="row">
 	        <div class="col-md-12">
@@ -72,7 +72,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         <div class="sec-title">
             <h1>Contact Details</h1>
             <div class="icon-holder">
-                <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+                <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
             </div>
             <p><?php echo $post->post_content; ?></p>
         </div>
@@ -176,7 +176,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                         id="contact-google-map" 
                         data-map-lat="32.318231" 
                         data-map-lng="-86.902298" 
-                        data-icon-path="/wp-content/themes/amb/assets/images/resources/map-marker.png" 
+                        data-icon-path="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/resources/map-marker.png" 
                         data-map-title="Brooklyn, New York, United Kingdom" 
                         data-map-zoom="12" 
                         data-markers='{
@@ -200,7 +200,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                     <div class="sec-title">
                         <h1>Send Your Mesage Us</h1>
                         <div class="icon-holder">
-                            <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
                         </div>
                     </div>
                     <form id="contact-form" name="contact_form" class="default-form" action="" method="post">
@@ -239,7 +239,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                     <div class="sec-title">
                         <h1>Your Contact</h1>
                         <div class="icon-holder">
-                            <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
                         </div>
                     </div>
                     <ul>
@@ -248,7 +248,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                                 <h3>Human Resource:</h3>
                             </div>
                             <div class="img-holder">
-                                <img src="/wp-content/themes/amb/assets/images/resources/contact-1.jpg" alt="">
+                                <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/resources/contact-1.jpg" alt="">
                             </div>
                             <div class="text-holder">
                                 <h5>Charles Mecky</h5>
@@ -261,7 +261,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                                 <h3>Sales Department:</h3>
                             </div>
                             <div class="img-holder">
-                                <img src="/wp-content/themes/amb/assets/images/resources/contact-2.jpg" alt="">
+                                <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/resources/contact-2.jpg" alt="">
                             </div>
                             <div class="text-holder">
                                 <h5>Robert Fertly</h5>

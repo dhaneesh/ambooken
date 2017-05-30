@@ -19,7 +19,7 @@ $global_phone = get_field('corporate_phone_number', $contact_postid);
 $global_email = get_field('corporate_mail', $contact_postid);
 $global_address = explode(PHP_EOL, get_field('corporate_address', $contact_postid));
 $social_postid = url_to_postid( 'social-media' );
-
+$address_in_footer = get_field('address_header_footer', $contact_postid);
 $links_args = array(
     'orderby'          => 'date',
     'order'            => 'DESC',
@@ -42,7 +42,7 @@ $news_args = array(
 $news_post = get_posts( $news_args );
 ?>   
 
-		<!--Start footer area-->  
+<!--Start footer area-->  
 <footer class="footer-area">
     <div class="container">
         <div class="row">
@@ -51,7 +51,7 @@ $news_post = get_posts( $news_args );
                 <div class="single-footer-widget pd-bottom50">
                     <div class="footer-logo">
                         <a href="index.html">
-                            <img src="/wp-content/themes/amb/assets/images/footer/footer-logo.png" alt="Awesome Footer Logo">
+                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/footer/footer-logo.png" alt="Awesome Footer Logo">
                         </a>
                     </div>
                     <div class="widget-content">
@@ -133,7 +133,7 @@ $news_post = get_posts( $news_args );
                 <ul class="footer-contact-info">
                     <li><span class="flaticon-telephone"></span><b>Phone:</b> <?php echo $global_phone; ?></li>
                     <li><span class="flaticon-back"></span><b>Email:</b> <?php echo $global_email; ?></li>
-                    <li><span class="flaticon-globe"></span><b>Add:</b> <?php echo $global_address[1]; ?></li>
+                    <li><span class="flaticon-globe"></span><b>Add:</b> <?php echo $address_in_footer; ?></li>
                 </ul>
             </div>
         </div>
@@ -147,7 +147,7 @@ $news_post = get_posts( $news_args );
         <div class="row">
             <div class="col-md-6 col-sm-8">
                 <div class="copyright-text">
-                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Solutions.</a></p> 
+                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Globalcky.</a></p> 
                 </div>
             </div>
             <div class="col-md-6 col-sm-4">
@@ -168,67 +168,67 @@ $news_post = get_posts( $news_args );
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 </div><!-- #page -->
 <!-- main jQuery -->
-<script src="/wp-content/themes/amb/assets/js/jquery-1.11.1.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery-1.11.1.min.js"></script>
 <!-- Wow Script -->
-<script src="/wp-content/themes/amb/assets/js/wow.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/wow.min.js"></script>
 <!-- bootstrap -->
-<script src="/wp-content/themes/amb/assets/js/bootstrap.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/bootstrap.min.js"></script>
 <!-- bx slider -->
-<script src="/wp-content/themes/amb/assets/js/jquery.bxslider.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.bxslider.min.js"></script>
 <!-- count to -->
-<script src="/wp-content/themes/amb/assets/js/jquery.countTo.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.countTo.js"></script>
 <!-- owl carousel -->
-<script src="/wp-content/themes/amb/assets/js/owl.carousel.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/owl.carousel.min.js"></script>
 <!-- validate -->
-<script src="/wp-content/themes/amb/assets/js/validation.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/validation.js"></script>
 <!-- mixit up -->
-<script src="/wp-content/themes/amb/assets/js/jquery.mixitup.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.mixitup.min.js"></script>
 <!-- easing -->
-<script src="/wp-content/themes/amb/assets/js/jquery.easing.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.easing.min.js"></script>
 <!-- gmap helper -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHzPSV2jshbjI8fqnC_C4L08ffnj5EN3A"></script>
 <!--gmap script-->
-<script src="/wp-content/themes/amb/assets/js/gmaps.js"></script>
-<script src="/wp-content/themes/amb/assets/js/map-helper.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/gmaps.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/map-helper.js"></script>
 <!-- fancy box -->
-<script src="/wp-content/themes/amb/assets/js/jquery.fancybox.pack.js"></script>
-<script src="/wp-content/themes/amb/assets/js/jquery.appear.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.fancybox.pack.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.appear.js"></script>
 <!-- isotope script-->
-<script src="/wp-content/themes/amb/assets/js/isotope.js"></script>
-<script src="/wp-content/themes/amb/assets/js/jquery.prettyPhoto.js"></script> 
-<script src="/wp-content/themes/amb/assets/js/jquery.bootstrap-touchspin.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/isotope.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.prettyPhoto.js"></script> 
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/jquery.bootstrap-touchspin.js"></script>
 <!-- jQuery timepicker js -->
-<script src="/wp-content/themes/amb/assets/assets/timepicker/timePicker.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/timepicker/timePicker.js"></script>
 <!-- Bootstrap select picker js -->
-<script src="/wp-content/themes/amb/assets/assets/bootstrap-sl-1.12.1/bootstrap-select.js"></script>                               
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/bootstrap-sl-1.12.1/bootstrap-select.js"></script>                               
 <!-- Bootstrap bootstrap touchspin js -->
 <!-- jQuery ui js -->
-<script src="/wp-content/themes/amb/assets/assets/jquery-ui-1.11.4/jquery-ui.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/jquery-ui-1.11.4/jquery-ui.js"></script>
 <!-- Language Switche  -->
-<script src="/wp-content/themes/amb/assets/assets/language-switcher/jquery.polyglot.language.switcher.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/language-switcher/jquery.polyglot.language.switcher.js"></script>
 <!-- Html 5 light box script-->
-<script src="/wp-content/themes/amb/assets/assets/html5lightbox/html5lightbox.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/html5lightbox/html5lightbox.js"></script>
 <!-- Menuzord script-->
-<script src="/wp-content/themes/amb/assets/assets/menuzord/menuzord.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/menuzord/menuzord.js"></script>
 
 
 <!-- revolution slider js -->
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
 
 
 
 <!-- thm custom script -->
-<script src="/wp-content/themes/amb/assets/js/custom.js"></script>
+<script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/custom.js"></script>
 <?php wp_footer(); ?>
 </div><!-- .boxed_wrapper -->
 </body>

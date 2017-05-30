@@ -52,6 +52,7 @@ $global_phone = get_field('corporate_phone_number', $contact_postid);
 $global_email = get_field('corporate_mail', $contact_postid);
 $global_address = explode(PHP_EOL, get_field('corporate_address', $contact_postid));
 $social_postid = url_to_postid( 'social-media' );
+$address_in_header = get_field('address_header_footer', $contact_postid);
 ?>        
 <!--Start top bar area-->
 <section class="top-bar-area">

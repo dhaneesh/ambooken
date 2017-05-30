@@ -104,7 +104,7 @@ $news = get_posts( $news_args );
         <div class="sec-title text-center">
             <h1><?php echo get_field( 'top_block_section_title' ); ?></h1>
             <div class="icon-holder">
-                <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+                <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
             </div>
             <p><?php echo get_field( 'top_block_section_content' ); ?></p>
         </div>
@@ -180,7 +180,7 @@ $news = get_posts( $news_args );
         <div class="sec-title text-center">
             <h1>Know About Us</h1>
             <div class="icon-holder">
-                <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+                <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
             </div>
         </div>
         <div class="row">
@@ -267,7 +267,7 @@ $news = get_posts( $news_args );
         <div class="sec-title text-center">
             <h1>Latest News</h1>
             <div class="icon-holder">
-                <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+                <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
             </div>
         </div>  
         <div class="row">
@@ -276,7 +276,7 @@ $news = get_posts( $news_args );
             <div class="col-md-4">
                 <div class="single-blog-item">
                     <div class="img-holder">
-                        <img src="/wp-content/themes/amb/assets/images/blog/latest-blog-1.jpg" alt="Awesome Image">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/blog/latest-blog-1.jpg" alt="Awesome Image">
                         <div class="overlay-style-one">
                             <div class="box">
                                 <div class="content">
@@ -313,7 +313,7 @@ $news = get_posts( $news_args );
         <div class="sec-title">
             <h1>Our Partners</h1>
             <div class="icon-holder">
-                <img src="/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
+                <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
             </div>
         </div>
         <div class="row">
@@ -323,7 +323,7 @@ $news = get_posts( $news_args );
                     <!--Start single item-->
                     <a class="tool_tip" title="<?php echo $partner->post_title; ?>" href="#">
                         <div class="single-item">
-                            <img src="/wp-content/themes/amb/assets/images/brand/1.png" alt="Awesome Brand Image">
+                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/brand/1.png" alt="Awesome Brand Image">
                         </div>
                     </a>
                     <?php } ?>
