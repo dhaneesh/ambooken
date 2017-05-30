@@ -571,18 +571,32 @@ if($("#contact-form").length){
           form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
           var form_btn_old_msg = form_btn.html();
           form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-          alert('test data');
-          $(form).ajaxSubmit({
-            dataType:  'json',
-            success: function(data) {
-                alert('kill');
-              if( data.status == 'true' ) {
-                $(form).find('.form-control').val('');
-              }
-              form_btn.prop('disabled', false).html(form_btn_old_msg);
-              $(form_result_div).html(data.message).fadeIn('slow');
-              setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
-            }
+           $(form).ajaxSubmit({
+             dataType:  'json',
+             data: $("#contact-form").serialize(), 
+             success: function(data) {
+                //$('.input_error').remove();
+                if( data.error) {
+                    console.log(data);
+                    $.each(data.error_message, function (i, message) {
+                    $('input[name="' + i + '"], select[name="' + i + '"]').after('<span class="input_error">'+message+'</span>');
+                  });
+                   var keys = Object.keys(data.error_message);
+                   $('input[name="'+keys[0]+'"]').focus();
+                   form_btn.prop('disabled', false).html(form_btn_old_msg);
+                  return false;     
+                    
+               } else {
+                   $("#contact-form")[0].reset()
+                   $(form).find('.form-control').val('');
+                   form_btn.prop('disabled', false).html(form_btn_old_msg);
+                   $(form_result_div).html(data.success_message).fadeIn('slow');
+                   setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
+
+                   return false;
+               }
+               
+             }
           });
         }
     });
@@ -705,6 +719,25 @@ if($("#review-form").length){
 
 // Dom Ready Function
 jQuery(document).ready(function () {
+
+    
+
+    // jQuery.ajax({
+    //     url : "/wp-admin/admin-ajax.php",
+    //     type : 'post',
+    //     data : {
+    //         action : 'read_me_later',
+    //         post_id : 2
+    //     },
+    //     success : function( response ) {
+    //         alert(response);
+    //     }, error: function(errorThrown){
+    //         console.log(errorThrown);
+    //     }
+    // });
+
+
+
 	(function ($) {
         // add your functions
         revolutionSliderActiver ();

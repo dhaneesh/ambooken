@@ -715,3 +715,81 @@ print_r($_POST);
 	    // }
 	return $errors;
 }
+
+function request_contact() {
+	global $wpdb;
+    // A default response holder, which will have data for sending back to our js file
+    $response = array(
+    	'error' => false,
+    );
+
+    if(empty(trim($_POST['form_name']))) {
+    	$response['error'] = true;
+	    $response['error_message']['form_name'] = 'Name is required';
+    }
+    if(empty(trim($_POST['form_email']))) {
+    	$response['error'] = true;
+		$response['error_message']['form_email'] = 'Email is required';
+	} else if(!filter_var($_POST['form_email'], FILTER_VALIDATE_EMAIL) ) {
+		$response['error'] = true;
+		$response['error_message']['form_email'] = 'Email is invalid';
+	}
+	if(empty(trim($_POST['form_phone']))) {
+    	$response['error'] = true;
+	    $response['error_message']['form_phone'] = 'Phone number is required';
+    }    
+    if(empty(trim($_POST['form_subject']))) {
+    	$response['error'] = true;
+	    $response['error_message']['form_subject'] = 'Subject is required';
+    }
+    if(empty(trim($_POST['form_message']))) {
+    	$response['error'] = true;
+	    $response['error_message']['form_message'] = 'Message is required';
+    }
+    
+ 	if($response['error']) {
+ 		exit(json_encode($response));
+ 	} else {
+ 		$data_to_save = array(
+		    'name' => $_POST['form_name'],
+		    'email' => $_POST['form_email'],
+		    'phone' => $_POST['form_phone'], 
+		    'subject' => $_POST['form_subject'],
+		    'message' => $_POST['form_message']
+		    );
+ 		$wpdb->insert($wpdb->prefix.'contact', $data_to_save);
+
+ 		// Send email address
+ 		$postid = url_to_postid( 'contact-us' );
+	    $to = get_field('to_address', $postid);
+
+	    $subject = $_POST['subject'];
+
+	    $message_body = '';
+	    $message_body .= '<div style="color: black;"> Hi Globalcky, </div><br /><br />';
+	    $message_body .= '<div style="background-color: #f2f2f2;border: 1px solid #ddd;text-align: left; padding: 5px; width:18%; float:left; color: black;font-weight: bold;">Job applied for: </div><div style="background-color: #f2f2f2;border: 1px solid #ddd;padding: 5px; width:75%; float:left;color: black">'. $_POST['form_name'].'</div><br />';
+
+	    $message_body .= '<div style="background-color: #f2f2f2;border: 1px solid #ddd;text-align: left; padding: 5px; width:18%; float:left; color: black;font-weight: bold;">Name:</div> <div style="background-color: #f2f2f2;border: 1px solid #ddd;padding: 5px; width:75%; float:left;color: black"> ' . $_POST['form_email'] . '</div><br/>';
+
+	    
+	    $message_body .= '<div style="background-color: #f2f2f2;border: 1px solid #ddd;text-align: left; padding: 5px; width:18%; float:left; color: black;font-weight: bold;">Phone: </div><div style="background-color: #f2f2f2;border: 1px solid #ddd;padding: 5px; width:75%; float:left;color: black"> ' . $_POST['form_phone'] . '</div><br/>';
+	    
+	    $message_body .= '<div style="background-color: #f2f2f2;border: 1px solid #ddd;text-align: left; padding: 5px; width:18%; float:left; color: black;font-weight: bold;">Message: </div><div style="background-color: #f2f2f2;border: 1px solid #ddd;padding: 5px; width:75%; float:left;color: black">' . $_POST['form_message'] . '</div><br/>';
+
+
+	    $message_body .= '<div style="padding:20px 5px 5px 5px;  width:89%;float: left; line-height: 18px;">
+	    				Thanks, '.$_POST['form_name'].'<br> </div>';
+
+	    $headers = array('Content-Type: text/html; charset=UTF-8');
+	    if (!wp_mail($to, $subject, $message_body, $headers)) {
+		  $response['mail_send_error'] = 'Mail not send. Please contact administrator';
+		  exit(json_encode($response));
+	  	}
+		$response['success_message'] = get_field('success_message', $postid);
+		exit(json_encode($response));
+ 	}
+    exit(json_encode($response));
+}
+
+add_action('wp_ajax_request_contact', 'request_contact');
+add_action('wp_ajax_nopriv_request_contact', 'request_contact'); // not really needed

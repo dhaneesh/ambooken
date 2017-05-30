@@ -203,7 +203,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                             <img src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/images/icon/zikjak.png" alt="Icon">
                         </div>
                     </div>
-                    <form id="contact-form" name="contact_form" class="default-form" action="" method="post">
+                    <form id="contact-form" name="contact_form" class="default-form" action="<?php echo admin_url('admin-ajax.php'); ?>" method="post">
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" name="form_name" value="" placeholder="Your Name*" required="">
@@ -214,10 +214,10 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="form_phone" value="" placeholder="Phone">
+                                <input type="text" name="form_phone" value="" placeholder="Phone" required="">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="form_subject" value="" placeholder="Subject">
+                                <input type="text" name="form_subject" value="" placeholder="Subject" required="">
                             </div>
                         </div>
                         <div class="row">
@@ -226,6 +226,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                             </div>
                         </div>
                         <div class="row">
+                            <input type="hidden" name="action" value="request_contact" />
                             <div class="col-md-12">
                                 <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
                                 <button class="thm-btn bg-clr1" type="submit" data-loading-text="Please wait...">send message</button>
