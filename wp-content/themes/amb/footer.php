@@ -229,6 +229,8 @@ $news_post = get_posts( $news_args );
 
 <!-- thm custom script -->
 <script src="<?php echo get_site_url(); ?>/wp-content/themes/amb/assets/js/custom.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <?php wp_footer(); ?>
 </div><!-- .boxed_wrapper -->
 </body>

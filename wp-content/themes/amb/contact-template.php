@@ -1,42 +1,7 @@
 <?php /* Template Name: Contact page Template */ ?>
-<?php get_header(); ?>
+<?php get_header();
+$captcha_settings = get_option('gglcptch_options'); 
 
-<?php
-
-if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-
-  if(count(validate_contact_form()) == 0) {
-
-    $name = $_POST['form_name'];
-    $email_address = $_POST['contact_email'];
-    $phone = $_POST['form_phone'];
-    $subject = $_POST['form_subject'];
-    $body = $_POST['form_message'];
-    $to = get_field('to_address', $post->ID);
-    
-    $mail_subject = 'Request from ' . $name;
-
-    $message_body = '';
-    $message_body .= 'Hi, <br />';
-    $message_body = 'Name : ' . $name . '<br/>';
-    $message_body .= 'Phone : ' . $phone. '<br/>';
-    $message_body .= 'Email : ' . $email_address . '<br/>';
-    $message_body .= 'Subject : ' . $subject . '<br/>';
-    $message_body .= 'Message : ' . $body . '<br/><br />';
-    $message_body .= 'Thanks, <br/> Globalcky';
-
-    $headers = array('Content-Type: text/html; charset=UTF-8');
-
-    if (wp_mail($to, $subject, $message_body, $headers)) {
-      $message = get_field('success_message', $post->ID);
-    } else {
-      $message = get_field('failed_message', $post->ID);
-    }
-    $_POST = array();
-  } else {
-    $errors = validate_contact_form();
-  }
-}
 ?>
 
 <!--Start breadcrumb area-->     
@@ -206,10 +171,10 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                     <form id="contact-form" name="contact_form" class="default-form" action="<?php echo admin_url('admin-ajax.php'); ?>" method="post">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="form_name" value="" placeholder="Your Name*" required="">
+                                <input type="text" name="form_name" value="" placeholder="Your Name*" >
                             </div>
                             <div class="col-md-6">
-                                <input type="email" name="form_email" value="" placeholder="Your Mail*" required="">
+                                <input type="email" name="form_email" value="" placeholder="Your Mail*" >
                             </div>
                         </div>
                         <div class="row">
@@ -225,6 +190,13 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                                 <textarea name="form_message" placeholder="Your Message.." required=""></textarea>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="g-recaptcha" style="margin-bottom:30px;" data-sitekey="<?php echo $captcha_settings['public_key']; ?>"></div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <input type="hidden" name="action" value="request_contact" />
                             <div class="col-md-12">

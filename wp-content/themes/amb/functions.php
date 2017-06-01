@@ -746,6 +746,18 @@ function request_contact() {
     	$response['error'] = true;
 	    $response['error_message']['form_message'] = 'Message is required';
     }
+
+    //your site secret key
+    $captcha_settings = get_option('gglcptch_options');
+    $secret = $captcha_settings['private_key'];
+    //get verify response data
+    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+    $responseData = json_decode($verifyResponse);
+    if(!$responseData->success) {
+    	$response['error'] = true;
+	    $response['error_message']['form_captcha'] = 'Robot verification failed, please try again.';
+    }
+
     
  	if($response['error']) {
  		exit(json_encode($response));
@@ -781,7 +793,7 @@ function request_contact() {
 	    				Thanks, '.$_POST['form_name'].'<br> </div>';
 
 	    $headers = array('Content-Type: text/html; charset=UTF-8');
-	    if (!wp_mail($to, $subject, $message_body, $headers)) {
+	    if (!wp_mail('dhaneesh88@gmail.com', $subject, $message_body, $headers)) {
 		  $response['mail_send_error'] = 'Mail not send. Please contact administrator';
 		  exit(json_encode($response));
 	  	}

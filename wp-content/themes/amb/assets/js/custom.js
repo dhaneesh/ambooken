@@ -564,6 +564,7 @@ function loginregister () {
 //=== Contact Form Validation ===
 if($("#contact-form").length){
     $("#contact-form").validate({
+        
         submitHandler: function(form) {
           var form_btn = $(form).find('button[type="submit"]');
           var form_result_div = '#form-result';
@@ -579,7 +580,11 @@ if($("#contact-form").length){
                 if( data.error) {
                     console.log(data);
                     $.each(data.error_message, function (i, message) {
-                    $('input[name="' + i + '"], select[name="' + i + '"]').after('<span class="input_error">'+message+'</span>');
+                        if(i == 'form_captcha') {
+                            $('.g-recaptcha').after('<span class="input_error">'+message+'</span>'); 
+                        } else {
+                            $('input[name="' + i + '"], select[name="' + i + '"]').after('<span class="input_error">'+message+'</span>'); 
+                        }
                   });
                    var keys = Object.keys(data.error_message);
                    $('input[name="'+keys[0]+'"]').focus();
@@ -587,6 +592,7 @@ if($("#contact-form").length){
                   return false;     
                     
                } else {
+                   $('.input_error').hide();   
                    $("#contact-form")[0].reset()
                    $(form).find('.form-control').val('');
                    form_btn.prop('disabled', false).html(form_btn_old_msg);
