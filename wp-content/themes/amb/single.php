@@ -17,13 +17,7 @@ get_header(); ?>
     <div class="breadcrumb-botton">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><span class="dotted"></span></li>
-                        <li class="active">Single Project</li>
-                    </ul>    
-                </div>
+                    <?php echo do_shortcode( '[breadcrumb]' );  ?>
             </div>
         </div>
     </div>

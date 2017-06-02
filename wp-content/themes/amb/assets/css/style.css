@@ -2321,6 +2321,7 @@ select:focus {
 .breadcrumb-botton ul li a{
   transition: all 500ms ease;
     color: #222;
+    margin-left: 10px;
 }
 .breadcrumb-botton ul li a:hover{
   color: #3452ff;    

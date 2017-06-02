@@ -19,7 +19,7 @@ $services_posts = get_posts( $services_args );
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>Services</h1>
+	                <h1><?php echo $post->post_title; ?></h1>
 	            </div>
 	        </div>
 	    </div>
@@ -27,13 +27,7 @@ $services_posts = get_posts( $services_args );
     <div class="breadcrumb-botton">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><span class="dotted"></span></li>
-                        <li class="active">Services</li>
-                    </ul>    
-                </div>
+                    <?php echo do_shortcode( '[breadcrumb]' );  ?>
             </div>
         </div>
     </div>

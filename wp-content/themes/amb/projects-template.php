@@ -26,7 +26,7 @@ $project_posts = get_posts( $project_args );
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>Our Projects</h1>
+	                <h1><?php echo $post->post_title; ?></h1>
 	            </div>
 	        </div>
 	    </div>
@@ -34,13 +34,7 @@ $project_posts = get_posts( $project_args );
     <div class="breadcrumb-botton">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><span class="dotted"></span></li>
-                        <li class="active">Our Projects</li>
-                    </ul>    
-                </div>
+                    <?php echo do_shortcode( '[breadcrumb]' );  ?>
             </div>
         </div>
     </div>

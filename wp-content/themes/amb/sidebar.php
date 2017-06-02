@@ -32,7 +32,6 @@
             </ul>
         </div>
         <!--End single sidebar-->
-        <?php get_sidebar(); ?>
         <!--Start single-sidebar-->    
         <div class="single-sidebar">
             <div class="sec-title">
