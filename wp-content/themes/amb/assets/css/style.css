@@ -3174,7 +3174,7 @@ select:focus {
 =============================================
 ***/
 .blog-large-area{
-    padding-top: 100px;
+    padding-top: 60px;
     padding-bottom: 100px;
 }
 .blog-large-area .blog-post {
@@ -3201,7 +3201,6 @@ select:focus {
 .blog-large-area .blog-post .single-blog-item .text-holder {
     border: none;
     padding: 0;
-    padding-top: 24px;
 }
 .blog-large-area .blog-post .single-blog-item .text-holder span {
     color: #3452ff;
@@ -3212,7 +3211,7 @@ select:focus {
 }
 .blog-large-area .blog-post .single-blog-item .text-holder .blog-title {
     font-size: 26px;
-    padding: 10px 0 0px;
+    padding: 0px 0 0px;
     line-height: 30px;
 }
 .blog-large-area .blog-post .single-blog-item .text-holder .meta-info {
@@ -5752,7 +5751,9 @@ select:focus {
     font-size: 11px;
     color: #f44336 !important;
 }
-
+.blog-post p {
+    padding-top: 10px;
+}
 
 
 

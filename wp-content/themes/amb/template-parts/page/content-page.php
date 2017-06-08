@@ -9,22 +9,41 @@
  * @since 1.0
  * @version 1.0
  */
-
 ?>
+<!--Start breadcrumb area-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-botton">
+        <div class="container">
+            <div class="row">
+                    <?php echo do_shortcode( '[breadcrumb]' );  ?>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->  
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		<?php twentyseventeen_edit_link( get_the_ID() ); ?>
-	</header><!-- .entry-header -->
-	<div class="entry-content">
-		<?php
-			the_content();
-
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'twentyseventeen' ),
-				'after'  => '</div>',
-			) );
-		?>
-	</div><!-- .entry-content -->
-</article><!-- #post-## -->
+<!--Start blog area-->
+<section class="blog-large-area blog-single-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="blog-post">
+                    <!--Start single blog post-->
+                    <div class="single-blog-item">
+                        <div class="text-holder">
+                            <?php the_title( '<h3 class="blog-title">', '</h3>' ); ?>
+                            <div class="text">
+                                <?php the_content(); ?>
+                            </div>
+                        </div>    
+                    </div>
+                    <!--End single blog post-->
+                </div>
+            </div>
+            <!--Start sidebar Wrapper-->
+            <?php get_sidebar(); ?>
+            <!--End Sidebar Wrapper-->   
+        </div>
+    </div>
+</section> 
+<!--End blog area-->                                                                          

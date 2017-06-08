@@ -129,15 +129,20 @@ $address_in_header = get_field('address_header_footer', $contact_postid);
                         <div class="outer-search-box">
                             <div class="seach-toggle"><i class="fa fa-search"></i></div>
                             <ul class="search-box">
-                                <li>
-                                <?php get_search_form(); ?>            
+                                <li>        
 
-                                    <form method="post" action="index.html">
-                                        <div class="form-group">
-                                            <input type="search" name="search" placeholder="Search Here" required>
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </form>
+                                <script>
+  (function() {
+    var cx = '002458699145403165644:mj_r4vxxmv8';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
                                 </li>
                             </ul>
                         </div>
