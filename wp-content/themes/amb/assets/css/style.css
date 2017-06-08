@@ -5754,6 +5754,10 @@ select:focus {
 .blog-post p {
     padding-top: 10px;
 }
+.entry-title a:hover {
+  color:#3452ff; 
+  box-shadow: none;
+}
 
 
 
