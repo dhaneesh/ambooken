@@ -805,3 +805,19 @@ function request_contact() {
 
 add_action('wp_ajax_request_contact', 'request_contact');
 add_action('wp_ajax_nopriv_request_contact', 'request_contact'); // not really needed
+
+add_action( 'init', 'dexlock_faq' );
+
+function dexlock_faq() {
+
+	register_post_type( 'faq', array(
+			'labels' => array(
+					'name' => 'FAQ',
+					'singular_name' => 'faq',
+			),
+			'description' => 'FAQ details can be added here',
+			'public' => true,
+			'menu_position' => 20,
+			'supports' => array( 'title', 'thumbnail', 'editor', 'custom-fields' )
+	));
+}
